@@ -174,17 +174,43 @@ let books = [
     }
   ];
 
-  let firstName = books[0].name
+  /* let firstName = books[0].name
   console.log(firstName);
 
   let firstPrice = books[0].price + " €"
-  console.log(firstPrice);
+  console.log(firstPrice); */
   
-  
-  
+  // ich brauche eine function mit der ich ähnlich wie bei fotogram durch das array(JSON) irretriere(wiederhole), bis das array am ende ist
+
+  function render() {
+    let contentRef = document.getElementById('content');              // ich bestimme eine Variable in der ich das HTML Elemnt speichere, das die ID content hat
+    for (let i = 0; i <books.length; i++) {                           // ich erstelle eine schleife, ich sage das die schleife nur solange geht bis das ende des arrays erreicht ist 
+      contentRef.innerHTML += getBookCardTemplate();                                    // ich sage das contentRef mit innerHTML etwas hinzugefügt wird 
+    }
+  }
   
 
-  function renderBookTitle() {
+  //eine template function mit der ich einen container(bookCard) hinzufügen will
+  function getBookCardTemplate() {
+    return `<div class="book-Card">
+                <h3>Titel</h3>
+                <div class="img-section"><img src="./img/buch.png" alt="Buch"></div>
+                <div>
+                  <div>Preis</div>
+                  <div>Likebutton</div>
+                </div>
+            </div>`;
+    
+  } 
+  
+
+
+
+
+
+
+
+  /* function renderBookTitle() {
     let bookTitelRef = document.getElementById('first-book');
     bookTitelRef.innerHTML = firstName;
     renderBookPrice();
@@ -196,4 +222,4 @@ let books = [
     bookPriceRef.innerHTML = firstPrice;
     
     
-  }
+  } */

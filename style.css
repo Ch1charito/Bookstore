@@ -39,14 +39,22 @@
     width: 100%;
     background-color: #05171e;
     display: flex;
-    justify-content: center;
+    @media (max-width: 350px){
+        justify-content: center;
+    }
     #content{
-        height: 500px;
-        width: 300px;
-        background-color: #0d323f;
+        display: flex;
+        flex-wrap: wrap;
         border-radius: 15px;
         text-align: center;
-        margin-top: 25px;
+        margin-top: 24px;
+        margin-left: 24px;
+        margin-right: 24px;
+        gap: 24px;
+        @media (max-width: 350px){
+            flex-direction: column;
+            flex-wrap: nowrap;
+        }
         #first-book{
             margin-top: 15px;
             padding-bottom: 15px;
@@ -60,10 +68,15 @@
         #first-price{
             color: #ff5b51;
         }
+        
+    }
+    .book-Card{
+        background-color: #0d323f;
+
     }
     .img-section{
         background-color: #114657;
         border-bottom: 1px solid;
     }
+    
   }
-  
