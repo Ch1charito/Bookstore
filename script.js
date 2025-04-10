@@ -174,52 +174,70 @@ let books = [
     }
   ];
 
-  /* let firstName = books[0].name
-  console.log(firstName);
-
-  let firstPrice = books[0].price + " €"
-  console.log(firstPrice); */
   
   // ich brauche eine function mit der ich ähnlich wie bei fotogram durch das array(JSON) irretriere(wiederhole), bis das array am ende ist
 
   function render() {
-    let contentRef = document.getElementById('content');              // ich bestimme eine Variable in der ich das HTML Elemnt speichere, das die ID content hat
+    let contentRef = document.getElementById('content');              // ich bestimme eine Variable in der ich das HTML Elemnt speichere, das die ID content hat                                       
     for (let i = 0; i <books.length; i++) {                           // ich erstelle eine schleife, ich sage das die schleife nur solange geht bis das ende des arrays erreicht ist 
-      contentRef.innerHTML += getBookCardTemplate();                                    // ich sage das contentRef mit innerHTML etwas hinzugefügt wird 
+      contentRef.innerHTML += getBookCardTemplate(i);                 // ich sage das contentRef mit innerHTML das Template aus der getbookcardTemplate function hinzugefügt wird
+    renderBookTitle(i);                                               // die function wird mit dem parameter i aus der schleife ausgeführt so wir der index weitergegeben und wir könnne uns ind der function durch den index den gewünschten wert rendern lassen                
+    renderBookPrice(i);                                               // das selbe wie bei renderBookTitle
+    renderBookAuthor(i);
+    renderBookPbYear(i);
+    renderBookGenre(i);
     }
   }
   
 
   //eine template function mit der ich einen container(bookCard) hinzufügen will
-  function getBookCardTemplate() {
+  function getBookCardTemplate(index) {                                                    // das Template was ich hinzufügen möchte
     return `<div class="book-Card">
-                <h3>Titel</h3>
+                <h3 id="book-title-${index}" class="title">Titel</h3>
                 <div class="img-section"><img src="./img/buch.png" alt="Buch"></div>
-                <div>
-                  <div>Preis</div>
+                <div class="price-like-section">
+                  <div id="book-price-${index}" class="price">Preis</div>
                   <div>Likebutton</div>
                 </div>
+                <div class="apg-section">
+                  <div class="author-genre-section"><p>Author :</p><div id="book-author-${index}" >name</div></div>
+                  <div class="author-genre-section"><p>Erscheinungsjahr :</p><div id="book-pbYear-${index}">name</div></div>
+                  <div class="author-genre-section"><p>Genre :</p><div id="book-genre-${index}">name</div></div>
+                </div>
             </div>`;
-    
   } 
+
+  // ich brauche eine function mit der ich jetzt den Buch title rendern kann
+  function renderBookTitle(index) {
+    let bookTitelRef = document.getElementById(`book-title-${index}`);        // ich bestimme den Ort wo ich den Title rendern will im Tmeplate mit der dynamischen Id
+    bookTitelRef.innerHTML = books[index].name;                               // ich gebe der Variable den Wert was reinkommen soll--> imm array Books greifen ich auf den index(parameter)auf das objekt name zu und hole mir den Wert(titelnamen)
+  }
   
+  // ich brauche eine function um den preis der bücher zu rendern
+  function renderBookPrice(index) {
+    let bookPriceRef = document.getElementById(`book-price-${index}`);      // ähnlich wie die title render function , ich habe wieder einfach eine dynamische id benutzt mit der ich zugreifen kann
+    let price = books[index].price.toFixed(2);                              // mit der to fixed methode lasse ich auf 2 nachkomma stellen anzeigen (übung dazu auf W3 ganz gut)
+    bookPriceRef.innerHTML = price + "€" ;                                  // ich füge also den wert der neuen variablen den string € hinzu damit das in dem gerenderten dann schöner ausschaut
+  }
 
-
-
-
-
-
-
-  /* function renderBookTitle() {
-    let bookTitelRef = document.getElementById('first-book');
-    bookTitelRef.innerHTML = firstName;
-    renderBookPrice();
+  // ich brauche eine function die den author rendert
+  function renderBookAuthor(index) {
+    let bookAuthorRef = document.getElementById(`book-author-${index}`);   // im Prinzip das selbe wie bei den anderen render function
+    bookAuthorRef.innerHTML = books[index].author;
   }
 
 
-  function renderBookPrice() {
-    let bookPriceRef = document.getElementById('first-price');
-    bookPriceRef.innerHTML = firstPrice;
-    
-    
-  } */
+  // ich brauche eine function die das Erscheinungsjahr rendert
+  function renderBookPbYear(index) {
+    let bookPbYearRef = document.getElementById(`book-pbYear-${index}`);   // auch das selbe 
+    bookPbYearRef.innerHTML = books[index].publishedYear;
+  }
+
+
+
+
+  // ich brauche eine function die das Genre rendert
+  function renderBookGenre(index) {
+    let bookGenreRef = document.getElementById(`book-genre-${index}`);     // auch das selbe
+    bookGenreRef.innerHTML = books[index].genre;
+  }
