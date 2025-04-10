@@ -35,7 +35,6 @@
     }
   }
   main{
-    height: 100vh;
     width: 100%;
     background-color: #05171e;
     display: flex;
@@ -45,9 +44,10 @@
     #content{
         display: flex;
         flex-wrap: wrap;
-        
+        justify-content: center;
         text-align: center;
         margin-top: 24px;
+        margin-bottom: 24px;
         margin-left: 24px;
         margin-right: 24px;
         gap: 24px;
@@ -123,6 +123,24 @@
         border-bottom: 1px solid;
         border-top: 1px solid;
         
+    }
+    
+  }
+  footer{
+    width: 100%;
+    height: 120px;
+    background-color: #082028;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    img{
+      height: 40px;
+    }
+    a:hover{
+      cursor: pointer;
+      filter: drop-shadow(0px 0px 4px #ffffff);
     }
     
   }
