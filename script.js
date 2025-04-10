@@ -186,6 +186,7 @@ let books = [
     renderBookAuthor(i);
     renderBookPbYear(i);
     renderBookGenre(i);
+    renderBookLikes(i);
     }
   }
   
@@ -197,7 +198,7 @@ let books = [
                 <div class="img-section"><img src="./img/buch.png" alt="Buch"></div>
                 <div class="price-like-section">
                   <div id="book-price-${index}" class="price">Preis</div>
-                  <div>Likebutton</div>
+                  <div class="like-button"><div id="book-likes-${index}">Likes</div><button>herz</button></div>
                 </div>
                 <div class="apg-section">
                   <div class="author-genre-section"><p>Author :</p><div id="book-author-${index}" >name</div></div>
@@ -240,4 +241,11 @@ let books = [
   function renderBookGenre(index) {
     let bookGenreRef = document.getElementById(`book-genre-${index}`);     // auch das selbe
     bookGenreRef.innerHTML = books[index].genre;
+  }
+
+  // ich brauche eine function die die likes rendert
+  function renderBookLikes(index) {
+    let bookLikesRef = document.getElementById(`book-likes-${index}`);
+    bookLikesRef.innerHTML = books[index].likes;
+    
   }
