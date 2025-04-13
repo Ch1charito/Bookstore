@@ -187,6 +187,7 @@ let books = [
     renderBookPbYear(i);
     renderBookGenre(i);
     renderBookLikes(i);
+    setLikeButtonColor(i);
     }
   }
   
@@ -198,7 +199,7 @@ let books = [
                 <div class="img-section"><img src="./img/buch.png" alt="Buch"></div>
                 <div class="price-like-section">
                   <div id="book-price-${index}" class="price">Preis</div>
-                  <div class="like-button"><div id="book-likes-${index}">Likes</div><button onclick="addOneLike(${index}, this)" class="like-icon">&hearts;</button></div>
+                  <div class="like-button"><div id="book-likes-${index}">Likes</div><button id="like-button-${index}" onclick="addOneLike(${index}, this)" class="like-icon">&hearts;</button></div>
                 </div>
                 <div class="apg-section">
                   <div class="author-genre-section"><p>Author :</p><div id="book-author-${index}" >name</div></div>
@@ -280,3 +281,21 @@ let books = [
     renderBookLikes(index);                
   }
     
+
+  // als letztes für die likes brauche ich jetzt eine function die abfrägt im JSON ob das buch bereits geliked ist und dies dann auch so anzeigt
+  // ich muss also einmal eine function haben die abfrägt ob true or flase und einmal eine die beim rendern der seite ausgeführt wird und dann die farbe des button updatet
+
+  function isBookLiked(index) {
+    return books[index].liked;      // ich gebe hier einfach nur zurück ob es true oder false ist
+  }
+
+  function setLikeButtonColor(index) {
+    const likeButton = document.getElementById(`like-button-${index}`);       // ich definiere eine variable mit der dynamischen id aus der template function um so auf die richtige id zuzugreifen
+  
+    if (isBookLiked(index) === true) {                                         // ich stelle eine abfrage ob der return wert true ist, wenn ja dann add ich die class liked wenn flase entferne ich sie
+      likeButton.classList.add('liked');
+    } else {
+      likeButton.classList.remove('liked');
+    }
+    
+  }
