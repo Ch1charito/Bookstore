@@ -198,7 +198,7 @@ let books = [
                 <div class="img-section"><img src="./img/buch.png" alt="Buch"></div>
                 <div class="price-like-section">
                   <div id="book-price-${index}" class="price">Preis</div>
-                  <div class="like-button"><div id="book-likes-${index}">Likes</div><button onclick="addLike(this)" class="like-icon">&hearts;</button></div>
+                  <div class="like-button"><div id="book-likes-${index}">Likes</div><button onclick="addOneLike(${index}, this)" class="like-icon">&hearts;</button></div>
                 </div>
                 <div class="apg-section">
                   <div class="author-genre-section"><p>Author :</p><div id="book-author-${index}" >name</div></div>
@@ -255,9 +255,28 @@ let books = [
     
   // der button muss die funktion haben das er von einem grau zu einem roten  wechselt sobald man ihn drückt (onclick), zudem muss sich onclick die zahl im array der likes für das asugesuchte array erhöhen
 
-  function addLike(button) {
-    button.classList.toggle('liked')
-  }
+  /* function addLike(button) {            // eine function mit einem parameter in diesem fall this: das bedeutet dieses Elemnt selber, damit kann ich also direkt auf diesen button zugreifen
+    button.classList.toggle('liked')    // ich greife über den parameter(in dem fall this um auf den diesesn button zuzugreifen) auf die classList zu und toggle die Class liked
+  } */
+
   // danach muss ich eine function schreiben die automatisch abfrägt ob im array liked : true oder false ist, bei false ist der likebutton noch nicht gedrückt also ohn hintergrund, bei true muss er bereits rot also gedrückt sein
 
+  /* function addOneLike(index, button) {        // eine function mit der ich die likes um 1 erhöhen kann
+    books[index].likes++;             // der index wird im Template weitergegeben und die eigenschaft likes wird um ++ also 1 erhöht
+    renderBookLikes(index);           // ich render book likes nochmal neu da sich ja was verändert hat und ich die aktualisierten likes anzeigen lassen möchte
+    button.classList.toggle('liked'); // ich verbinde die obere function mit der function hier in dem ich der function einfach 2 parameter gebe und beides ansprechen kann, so ändert sich die farbe und es wird +1 hinzugefügt
 
+  } */
+
+  //ich brauche jetzt eie function die nicht nur hinzufügt sondern wenn das like entfernt wird auch wieder -1 abzieht bei likes
+  function addOneLike(index, button) {
+    if (button.classList.contains('liked')) {           // ich stelle eine abfrage mit der methode .contains (das ist eine methode von classList um abzufragen ob das html element eine css klasse bereits hat('der name der css class'))
+      books[index].likes--;                             // wenn das der fall ist, also es bereits geliked ist, dann -1 bei likes 
+    } else {
+      books[index].likes++;                             // wenn nicht dann wird +1 draufgezählt bei likes, ---> so verhindern wird, dass einfach jedesmal +1 auf likes gerechnet wird wenn wir den button betätigen
+    }
+  
+    button.classList.toggle('liked');                   // ich übernehme den Teil aus der oberen function die ich nun nichtmehr nutzte --> es wird die class getoggled und die 'neuen' likes werden gerendert
+    renderBookLikes(index);                
+  }
+    
