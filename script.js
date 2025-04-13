@@ -198,7 +198,7 @@ let books = [
                 <div class="img-section"><img src="./img/buch.png" alt="Buch"></div>
                 <div class="price-like-section">
                   <div id="book-price-${index}" class="price">Preis</div>
-                  <div class="like-button"><div id="book-likes-${index}">Likes</div><button>herz</button></div>
+                  <div class="like-button"><div id="book-likes-${index}">Likes</div><button onclick="addLike(this)" class="like-icon">&hearts;</button></div>
                 </div>
                 <div class="apg-section">
                   <div class="author-genre-section"><p>Author :</p><div id="book-author-${index}" >name</div></div>
@@ -249,3 +249,15 @@ let books = [
     bookLikesRef.innerHTML = books[index].likes;
     
   }
+
+  // ich brauche einen like button, dabei muss ich mehrere sachen beachten
+  // der likebutton muss standardmäßig gerendert werden 
+    
+  // der button muss die funktion haben das er von einem grau zu einem roten  wechselt sobald man ihn drückt (onclick), zudem muss sich onclick die zahl im array der likes für das asugesuchte array erhöhen
+
+  function addLike(button) {
+    button.classList.toggle('liked')
+  }
+  // danach muss ich eine function schreiben die automatisch abfrägt ob im array liked : true oder false ist, bei false ist der likebutton noch nicht gedrückt also ohn hintergrund, bei true muss er bereits rot also gedrückt sein
+
+

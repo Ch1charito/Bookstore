@@ -93,6 +93,7 @@
         .price-like-section{
             display: flex;
             justify-content: space-between;
+            align-items: center;
             margin-left: 8px;
             margin-right: 8px;
             margin-top: 24px;
@@ -100,7 +101,18 @@
             .like-button{
                 display: flex;
                 justify-content: space-between;
+                align-items: center;
                 width: 80px;
+                .like-icon{
+                    font-size: 32px;
+                    cursor: pointer;
+                    background: none;
+                    border: none;
+                    color: grey;
+                }
+                .like-icon.liked{
+                    color: red;
+                }
             }
         }
         
