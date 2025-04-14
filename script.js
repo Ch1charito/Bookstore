@@ -209,7 +209,7 @@ let books = [
                 </div>
                 <div>
                   <div class="comment-headline">Kommentare:</div>
-                  <div id="comment-section-${index}"></div>
+                  <div class="comment-area" id="comment-section-${index}"></div>
                   <div class="input-button"><input class="input-comment" placeholder=" Schreibe einen Kommentar..." type="text"><button class="send-button">&#128233;</button></div>
                 </div>
             </div>`;
@@ -316,7 +316,7 @@ let books = [
     for (let i = 0; i < books[index].comments.length; i++) {                  // ich brauche eine schleife die pro Buch nochmal innerhalt Comments wiederholt damit alle comments gerendert werden
       let comment = books[index].comments[i];                                 // ich hole mir das objekt mit zwei eigenschaften einmal der name eigenschaft und einmal der comment eigenschaft
       commentsHTML += ` <div class="comment">       
-                          <span>${comment.name} :</span>
+                          <span>${comment.name}:</span>
                           <span>${comment.comment}</span>
                         </div>`
     }                                                                         // ich baue eine template die ich quasi in meine template einbauen möchte, einmal mit dem name und einmal mit dem comment

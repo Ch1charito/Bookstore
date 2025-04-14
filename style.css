@@ -74,7 +74,7 @@
         background-color: #0d323f;
         border-radius: 15px;
         width: 300px;
-        height: 600px;
+        height: 650px;
         @media (max-width: 370px){
             width: 250px;
         }
@@ -133,9 +133,20 @@
             display: flex;
             margin-top: 24px;
             margin-left: 8px;
+            font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        .comment-area{
+            height: 180px;
+            overflow-y: auto;               /* mit overflow-y kann ich vertikales scrollen aktivieren */
+            font-size: 14px;
+            margin-left: 8px;
+            margin-right: 8px;
+            padding-right: 8px;
         }
         .input-button{
-            margin-top: 24px;
+            margin-top: 8px;
             display: flex;
             justify-content: center;
             align-items: end;
@@ -147,6 +158,11 @@
             background: none;
             color: white;
             height: 24px;
+        }
+        .comment{
+            display: flex;
+            text-align: end;
+            margin-bottom: 8px;
         }
         .send-button{
             background: none;
