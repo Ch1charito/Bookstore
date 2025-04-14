@@ -210,10 +210,11 @@ let books = [
                 <div>
                   <div class="comment-headline">Kommentare:</div>
                   <div class="comment-area" id="comment-section-${index}"></div>
-                  <div class="input-button"><input class="input-comment" placeholder=" Schreibe einen Kommentar..." type="text"><button class="send-button">&#128233;</button></div>
+                  <div class="input-button"><input class="input-comment" id="input-comment-${index}" placeholder=" Schreibe einen Kommentar..." type="text"><button onclick="addComment(${index})" class="send-button">&#128233;</button></div>
                 </div>
             </div>`;
   } 
+
 
   // ich brauche eine function mit der ich jetzt den Buch title rendern kann
   function renderBookTitle(index) {
@@ -221,12 +222,14 @@ let books = [
     bookTitelRef.innerHTML = books[index].name;                               // ich gebe der Variable den Wert was reinkommen soll--> imm array Books greifen ich auf den index(parameter)auf das objekt name zu und hole mir den Wert(titelnamen)
   }
   
+
   // ich brauche eine function um den preis der bücher zu rendern
   function renderBookPrice(index) {
     let bookPriceRef = document.getElementById(`book-price-${index}`);      // ähnlich wie die title render function , ich habe wieder einfach eine dynamische id benutzt mit der ich zugreifen kann
     let price = books[index].price.toFixed(2);                              // mit der to fixed methode lasse ich auf 2 nachkomma stellen anzeigen (übung dazu auf W3 ganz gut)
     bookPriceRef.innerHTML = price + "€" ;                                  // ich füge also den wert der neuen variablen den string € hinzu damit das in dem gerenderten dann schöner ausschaut
   }
+
 
   // ich brauche eine function die den author rendert
   function renderBookAuthor(index) {
@@ -242,13 +245,12 @@ let books = [
   }
 
 
-
-
   // ich brauche eine function die das Genre rendert
   function renderBookGenre(index) {
     let bookGenreRef = document.getElementById(`book-genre-${index}`);     // auch das selbe
     bookGenreRef.innerHTML = books[index].genre;
   }
+
 
   // ich brauche eine function die die likes rendert
   function renderBookLikes(index) {
@@ -257,14 +259,16 @@ let books = [
     
   }
 
+
   // ich brauche einen like button, dabei muss ich mehrere sachen beachten
-  // der likebutton muss standardmäßig gerendert werden 
-    
+  // der likebutton muss standardmäßig gerendert werden   
   // der button muss die funktion haben das er von einem grau zu einem roten  wechselt sobald man ihn drückt (onclick), zudem muss sich onclick die zahl im array der likes für das asugesuchte array erhöhen
+
 
   /* function addLike(button) {            // eine function mit einem parameter in diesem fall this: das bedeutet dieses Elemnt selber, damit kann ich also direkt auf diesen button zugreifen
     button.classList.toggle('liked')    // ich greife über den parameter(in dem fall this um auf den diesesn button zuzugreifen) auf die classList zu und toggle die Class liked
   } */
+
 
   // danach muss ich eine function schreiben die automatisch abfrägt ob im array liked : true oder false ist, bei false ist der likebutton noch nicht gedrückt also ohn hintergrund, bei true muss er bereits rot also gedrückt sein
 
@@ -272,8 +276,8 @@ let books = [
     books[index].likes++;             // der index wird im Template weitergegeben und die eigenschaft likes wird um ++ also 1 erhöht
     renderBookLikes(index);           // ich render book likes nochmal neu da sich ja was verändert hat und ich die aktualisierten likes anzeigen lassen möchte
     button.classList.toggle('liked'); // ich verbinde die obere function mit der function hier in dem ich der function einfach 2 parameter gebe und beides ansprechen kann, so ändert sich die farbe und es wird +1 hinzugefügt
-
   } */
+
 
   //ich brauche jetzt eie function die nicht nur hinzufügt sondern wenn das like entfernt wird auch wieder -1 abzieht bei likes
   function addOneLike(index, button) {
@@ -282,7 +286,6 @@ let books = [
     } else {
       books[index].likes++;                             // wenn nicht dann wird +1 draufgezählt bei likes, ---> so verhindern wird, dass einfach jedesmal +1 auf likes gerechnet wird wenn wir den button betätigen
     }
-  
     button.classList.toggle('liked');                   // ich übernehme den Teil aus der oberen function die ich nun nichtmehr nutzte --> es wird die class getoggled und die 'neuen' likes werden gerendert
     renderBookLikes(index);                
   }
@@ -322,4 +325,16 @@ let books = [
     }                                                                         // ich baue eine template die ich quasi in meine template einbauen möchte, einmal mit dem name und einmal mit dem comment
     commentRef.innerHTML = commentsHTML;                                      // ich gebe nun meine zwischengespeicherten daten wieder meinem commentRef und lasse es über innerHTML bei dem jeweiligen buch rendern
   }
+  
+  
   // ich brauche eine function mit der ich über die dynamische id auf das input fled des jeweiligen buchs zugreifen kann und dann in die commentar area mit der jeweils passenden dynamischen id dann den neuen commentar reinrender
+  
+  function addComment(index) {                                              // in meiner function muss ich natürlich drauf achten das der parameter den ich übergebe mit ${index} geschirben wird, da nur so die function auch mit dem richtigen index (zur richtigen zeit) ausgeführt werden kann
+    let inputRef = document.getElementById(`input-comment-${index}`);       //ich nehme mir die inputRef von den dynamischen ids
+    let commentInput = inputRef.value;                                      // ich gebe diesen wert(value) einer zwischen variable
+    books[index].comments.push({                                            // ich pushe array und die position comments bei name mit current user und bei comment um den input
+      name: "Current User",
+      comment : commentInput});
+    inputRef.value = "";                                                    // ich leere danach das input-feld
+    renderBookComments(index);                                              // ich render die comments neu
+  }
