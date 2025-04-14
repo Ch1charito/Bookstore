@@ -317,7 +317,7 @@ let books = [
     let commentsHTML = '';                                                    // ich erschaffe eine neue variable die leer ist, in dieser sammel ich das template damit ich das dann dem commentRef hinzufügen kann---> ist für mich so übersichtlicher
 
     for (let i = 0; i < books[index].comments.length; i++) {                  // ich brauche eine schleife die pro Buch nochmal innerhalt Comments wiederholt damit alle comments gerendert werden
-      let comment = books[index].comments[i];                                 // ich hole mir das objekt mit zwei eigenschaften einmal der name eigenschaft und einmal der comment eigenschaft
+      let comment = books[index].comments[i];                                 // ich hole mir das objekt mit zwei eigenschaften einmal der name eigenschaft und einmal der comment eigenschaft // der erste index zeigt die aktuelle stelel wo wir sind bei welchem buch und i die position in der schleife
       commentsHTML += ` <div class="comment">       
                           <span>${comment.name}:</span>
                           <span>${comment.comment}</span>
@@ -325,7 +325,6 @@ let books = [
     }                                                                         // ich baue eine template die ich quasi in meine template einbauen möchte, einmal mit dem name und einmal mit dem comment
     commentRef.innerHTML = commentsHTML;                                      // ich gebe nun meine zwischengespeicherten daten wieder meinem commentRef und lasse es über innerHTML bei dem jeweiligen buch rendern
   }
-  
   
   // ich brauche eine function mit der ich über die dynamische id auf das input fled des jeweiligen buchs zugreifen kann und dann in die commentar area mit der jeweils passenden dynamischen id dann den neuen commentar reinrender
   
