@@ -129,6 +129,31 @@
             margin-bottom: 8px;
             
         }
+        .comment-headline{
+            display: flex;
+            margin-top: 24px;
+            margin-left: 8px;
+        }
+        .input-button{
+            margin-top: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: end;
+        }
+        .input-comment{
+            border-radius: 4px;
+            width: 200px;
+            margin-right: 8px;
+            background: none;
+            color: white;
+            height: 24px;
+        }
+        .send-button{
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+        }
     }
     .img-section{
         background-color: #114657;

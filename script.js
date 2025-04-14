@@ -188,6 +188,7 @@ let books = [
     renderBookGenre(i);
     renderBookLikes(i);
     setLikeButtonColor(i);
+    renderBookComments(i);
     }
   }
   
@@ -205,6 +206,11 @@ let books = [
                   <div class="author-genre-section"><p>Author :</p><div id="book-author-${index}" >name</div></div>
                   <div class="author-genre-section"><p>Erscheinungsjahr :</p><div id="book-pbYear-${index}">name</div></div>
                   <div class="author-genre-section"><p>Genre :</p><div id="book-genre-${index}">name</div></div>
+                </div>
+                <div>
+                  <div class="comment-headline">Kommentare:</div>
+                  <div id="comment-section-${index}"></div>
+                  <div class="input-button"><input class="input-comment" placeholder=" Schreibe einen Kommentar..." type="text"><button class="send-button">&#128233;</button></div>
                 </div>
             </div>`;
   } 
@@ -299,3 +305,21 @@ let books = [
     }
     
   }
+
+
+  //ich brauche eine function mit der ich die Kommentare rendern kann
+  
+  function renderBookComments(index) {
+    let commentRef = document.getElementById(`comment-section-${index}`);     // der ort wo die kommentare gerendert werden sollen mit `` backticks kann ich wieder auf die dynamische id zugreifen
+    let commentsHTML = '';                                                    // ich erschaffe eine neue variable die leer ist, in dieser sammel ich das template damit ich das dann dem commentRef hinzufügen kann---> ist für mich so übersichtlicher
+
+    for (let i = 0; i < books[index].comments.length; i++) {                  // ich brauche eine schleife die pro Buch nochmal innerhalt Comments wiederholt damit alle comments gerendert werden
+      let comment = books[index].comments[i];                                 // ich hole mir das objekt mit zwei eigenschaften einmal der name eigenschaft und einmal der comment eigenschaft
+      commentsHTML += ` <div class="comment">       
+                          <span>${comment.name} :</span>
+                          <span>${comment.comment}</span>
+                        </div>`
+    }                                                                         // ich baue eine template die ich quasi in meine template einbauen möchte, einmal mit dem name und einmal mit dem comment
+    commentRef.innerHTML = commentsHTML;                                      // ich gebe nun meine zwischengespeicherten daten wieder meinem commentRef und lasse es über innerHTML bei dem jeweiligen buch rendern
+  }
+  // ich brauche eine function mit der ich über die dynamische id auf das input fled des jeweiligen buchs zugreifen kann und dann in die commentar area mit der jeweils passenden dynamischen id dann den neuen commentar reinrender
